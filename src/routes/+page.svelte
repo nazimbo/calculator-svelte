@@ -38,6 +38,13 @@
 
     displayValue = !selectedOperator ? firstNumber : secondNumber;
   };
+
+  const handleClear = () => {
+    displayValue = "";
+    firstNumber = "";
+    secondNumber = "";
+    selectedOperator = "";
+  };
 </script>
 
 <main>
@@ -52,7 +59,7 @@
             {number}
           </button>
         {/each}
-        <button> C </button>
+        <button on:click={handleClear}> C </button>
       </div>
 
       <div class="operators">
