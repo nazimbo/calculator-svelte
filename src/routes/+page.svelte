@@ -8,7 +8,12 @@
   let secondNumber = "";
 
   const handleOperatorClick = (operator: string) => {
-    if (firstNumber === "") return;
+    if (!firstNumber) return;
+    if (operator === "=") {
+      if (secondNumber === "") return;
+      displayValue = eval(`${firstNumber} ${selectedOperator} ${secondNumber}`);
+    }
+
     selectedOperator = operator;
   };
 
