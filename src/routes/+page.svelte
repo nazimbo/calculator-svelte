@@ -1,24 +1,35 @@
 <script lang="ts">
-  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "C"];
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
   const operators = ["/", "*", "-", "+", "="];
 
   let selectedOperator = "";
+  let displayValue = "";
 
   const handleOperatorClick = (operator: string) => {
     selectedOperator = operator;
+  };
+
+  const handleNumberClick = (number: string) => {
+    if (displayValue === "" && number === "0") return;
+    if (number === "." && displayValue.includes(".")) return;
+    if (displayValue === "" && number === ".") return (displayValue = "0.");
+    displayValue += number;
   };
 </script>
 
 <main>
   <div class="calculator">
-    <div class="result"><h1 style="color: blue;">{selectedOperator}</h1></div>
+    <div class="result">
+      <h1>{displayValue}</h1>
+    </div>
     <div class="buttons">
       <div class="numbers">
         {#each numbers as number (number)}
-          <button>
+          <button on:click={() => handleNumberClick(number)}>
             {number}
           </button>
         {/each}
+        <button> C </button>
       </div>
 
       <div class="operators">
