@@ -4,16 +4,31 @@
 
   let selectedOperator = "";
   let displayValue = "";
+  let firstNumber = "";
+  let secondNumber = "";
 
   const handleOperatorClick = (operator: string) => {
     selectedOperator = operator;
   };
 
+  const handleDecimal = (number: string, currentNumber: string) => {
+    if (currentNumber === "" && number === ".") {
+      return "0.";
+    }
+    return currentNumber + number;
+  };
+
   const handleNumberClick = (number: string) => {
     if (displayValue === "" && number === "0") return;
     if (number === "." && displayValue.includes(".")) return;
-    if (displayValue === "" && number === ".") return (displayValue = "0.");
-    displayValue += number;
+
+    if (!selectedOperator) {
+      firstNumber = handleDecimal(number, firstNumber);
+    } else {
+      secondNumber = handleDecimal(number, secondNumber);
+    }
+
+    displayValue = !selectedOperator ? firstNumber : secondNumber;
   };
 </script>
 
