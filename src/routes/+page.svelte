@@ -8,6 +8,7 @@
   let secondNumber = "";
 
   const handleOperatorClick = (operator: string) => {
+    if (firstNumber === "") return;
     selectedOperator = operator;
   };
 
@@ -49,7 +50,7 @@
 
       <div class="operators">
         {#each operators as operator (operator)}
-          <button on:click={() => handleOperatorClick(operator)}>
+          <button class={`${operator === selectedOperator ? "button-clicked" : ""}`} on:click={() => handleOperatorClick(operator)}>
             {operator}
           </button>
         {/each}
@@ -141,5 +142,9 @@
 
   .operators button:hover {
     background-color: #e0e0e0;
+  }
+
+  .operators .button-clicked {
+    background-color: #c0c0c0;
   }
 </style>
