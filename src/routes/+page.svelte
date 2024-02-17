@@ -12,6 +12,8 @@
     if (operator === "=") {
       if (secondNumber === "") return;
       displayValue = eval(`${firstNumber} ${selectedOperator} ${secondNumber}`);
+      firstNumber = displayValue;
+      secondNumber = "";
     }
 
     selectedOperator = operator;
